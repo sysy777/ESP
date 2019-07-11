@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menu{
+public class Menu{//메뉴파일
     static void menu() {
         //사용자가 할 수 있는 행동 제시
         System.out.print("선택보기 중 하나를 선택해주세요. ");
