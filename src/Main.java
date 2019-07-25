@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+import java.io.*;
 import java.util.Scanner;
 import DataStructure.FoodBlock;
 
@@ -9,7 +9,7 @@ public class Main {
 
 class tools{
     //기존의 음식 삭제 함수
-//    void delOld(){
+//    static void delOld(File f){
 //        for(){
 //            System.out.println("String(name of list)");
 //        }
@@ -27,23 +27,48 @@ class tools{
 //        }
 //    }
 
-    //음식 목록 출력 함수 **DB연동
-//    void printFood(){
-//        for(String : DB){
-//            System.out.println("String \n");
-//        }
-//    }
+    //음식 목록 출력 함수
+    static void printFood(File f){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String str;
+            int k = 1;
+            while((str = br.readLine()) != null){
+                //이러면 목록에 아무것도 없을 때 번호 1만 출력됨...
+                System.out.println(k + " " + str);
+                k++;
+            }
+            br.close();
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println("메뉴로 돌아갑니다.");
+    }
 
     //새로운 음식 입력
-    void inputNew(Scanner in){
+    static void inputNew(File f){
         //스캐너로 받아오기
-        while(true){
-            in.next();
-            System.out.println("더 입력하시겠습니까?");
-            String i = in.next();
-            if(i != "yes"){
-                break;
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("저장하실 음식의 개수를 입력하세요 : ");
+        int n = in.nextInt();
+        try {
+            FileWriter fw = new FileWriter(f, true);
+            for(int i=0; i<n; i++) {
+                System.out.print("음식명을 입력하세요 : ");
+                String a = in.next();
+                System.out.print("유통기한을 입력하세요(YYMMDD) : ");
+                int b = in.nextInt();
+                FoodBlock fb = new FoodBlock(a,b);
+                fw.write(a + " " + b + "\r\n");
             }
+            System.out.println("저장되었습니다.");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("메뉴로 돌아갑니다.");
     }
 }
