@@ -8,7 +8,7 @@ public class Main {
 }
 
 class tools{
-    //기존의 음식 삭제 함수
+    //기존의 음식 삭제 함수(덮어쓰기로 해야할듯)
 //    static void delOld(File f){
 //        for(){
 //            System.out.println("String(name of list)");
