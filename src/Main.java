@@ -1,7 +1,10 @@
 import java.lang.reflect.Array;
 import java.util.Scanner;
+import DataStructure.FoodBlock;
 
 public class Main {
+    public static final int SIZE = 10;
+    FoodBlock[] myRef = new FoodBlock[SIZE]; //음식물개수
 }
 
 class tools{
