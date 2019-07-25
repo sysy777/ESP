@@ -1,4 +1,4 @@
-package DataStructure;
+package ESP.DataStructure;
 
 public class FoodBlock {
     String name;
