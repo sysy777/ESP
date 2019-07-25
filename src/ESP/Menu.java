@@ -1,9 +1,11 @@
-import java.io.File;
+package ESP;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class Menu{//메뉴파일
-    static void menu(File f) {
-        //사용자가 할 수 있는 행동 제시
+    public static void menu(File f) {
+        //사용자가 할 수 있는 행동 제시 //첫화면
         while(true) {
             System.out.println("선택보기 중 하나를 선택해주세요. ");
             System.out.println("1. 음식 목록보기  2. 음식 새로입력  3. 음식 삭제하기  4.종료하기");
@@ -11,9 +13,9 @@ public class Menu{//메뉴파일
             int num = in.nextInt();
 
             if (num == 1) {
-                tools.printFood(f);  //음식보기 함수 호출
+                Tools.printFood(f);  //음식보기 함수 호출
             } else if (num == 2) {
-                tools.inputNew(f);  //새로운 음식 추가 함수 호출
+                Tools.inputNew(f);  //새로운 음식 추가 함수 호출
             } else if (num == 3) {
                 //            tools.delOld(f);  //기존에 있던 음식 삭제하는 함수 호출
             } else if (num == 4){
@@ -26,8 +28,9 @@ public class Menu{//메뉴파일
         }
     }
 
-    public static void main(String[] args) {
-        File f = new File("food.txt");
-        menu(f);
-    }
+
+
+
+
+
 }
