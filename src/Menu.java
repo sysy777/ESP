@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu{//메뉴파일
     static void menu() {
         //사용자가 할 수 있는 행동 제시
-        System.out.print("선택보기 중 하나를 선택해주세요. minji");
+        System.out.print("선택보기 중 하나를 선택해주세요. ");
         System.out.print("1. 음식 목록보기  2. 음식 새로입력  3. 음식 삭제하기\n");
         Scanner in =new Scanner(System.in);
         int num = in.nextInt();
