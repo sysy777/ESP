@@ -25,7 +25,9 @@ public class Menu{//메뉴파일
                 System.out.println("잘못된 숫자입니다. 1~4까지의 숫자를 다시 입력해주세요.");
                 // 1,2,3번 중 해당하는 숫자가 없을 시에 1번 항목으로 출력
             }
+            //System.out.println("not done");
         }
+        //System.out.println("done");
     }
 
 
