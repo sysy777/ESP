@@ -51,7 +51,6 @@ public class Tools {
         } catch (IOException e){
             e.printStackTrace();
         }
-        System.out.println("메뉴로 돌아갑니다.");
     }
 
     //새로운 음식 입력
@@ -76,6 +75,5 @@ public class Tools {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("메뉴로 돌아갑니다.");
     }
 }

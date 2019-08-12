@@ -9,8 +9,14 @@ public class Main {
     FoodBlock[] myRef = new FoodBlock[SIZE]; //음식물개수
 
     public static void main(String[] args) {
-        //Menu Mn = new Menu();
         File f = new File("food.txt");
+
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Menu.menu(f);
     }
 }
