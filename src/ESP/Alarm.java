@@ -14,7 +14,7 @@ public class Alarm {
 
             while ((tuple = br.readLine()) != null){
                 date = tuple.split(" ");
-                if(date[0] == strToday){
+                if(date[0].compareTo(strToday)==0){
                     System.out.println(date[1]+"의 유통기한이 "+strToday+"까지 입니다.");
                 }
             }
