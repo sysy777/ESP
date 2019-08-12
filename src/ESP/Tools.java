@@ -7,7 +7,21 @@ import java.util.Scanner;
 public class Tools {
     //기존의 음식 삭제 함수(덮어쓰기로 해야할듯)
 //    static void delOld(File f){
-
+//        for(){
+//            System.out.println("String(name of list)");
+//        }
+//        System.out.println("삭제할 목록 번호를 입력하세요");
+//
+//        while(true){
+//            Scanner in = new Scanner(System.in);
+//            if(int i != "yes"){
+//                break;
+//            }
+//        }
+//        //들어온 번호 삭제
+//        for(){
+//            Array.delete(num); //num == 들어온 번호
+//        }
 //    }
 
     //음식 목록 출력 함수
@@ -22,10 +36,13 @@ public class Tools {
                 k++;
             }
             if(str == null) {
-                System.out.println("등록된 음식이 없습니다. 음식을 등록하려면 1을, 아니라면 1을 제외한 아무숫자를 입력하세요. : ");
+                System.out.println("등록된 음식이 없습니다. 음식을 등록하시겠습니까?");
                 Scanner in = new Scanner(System.in);
                 int ans = in.nextInt();
-                if (ans == 1) inputNew(f);
+                if(ans==1){
+                    inputNew(f);
+                }
+                else Menu.menu(f);
             }
 
             br.close();
@@ -34,6 +51,7 @@ public class Tools {
         } catch (IOException e){
             e.printStackTrace();
         }
+        System.out.println("메뉴로 돌아갑니다.");
     }
 
     //새로운 음식 입력
@@ -58,5 +76,6 @@ public class Tools {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("메뉴로 돌아갑니다.");
     }
 }
