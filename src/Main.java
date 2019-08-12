@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         //Menu Mn = new Menu();
         File f = new File("food.txt");
-        System.out.println(f.length());
         Menu.menu(f);
     }
 }
