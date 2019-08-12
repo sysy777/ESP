@@ -3,7 +3,7 @@ package ESP;
 import java.io.*;
 import java.util.Scanner;
 
-public class Menu{//메뉴파일
+public class Menu{//사용자가 만나는 인터페이스(진짜 메뉴판)
     public static void menu(File f) {
         //사용자가 할 수 있는 행동 제시 //첫화면
         while(true) {
