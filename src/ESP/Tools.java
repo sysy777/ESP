@@ -5,53 +5,67 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Tools {
-    //기존의 음식 삭제 함수(덮어쓰기로 해야할듯)
-//    static void delOld(File f){
-//        for(){
-//            System.out.println("String(name of list)");
-//        }
-//        System.out.println("삭제할 목록 번호를 입력하세요");
-//
-//        while(true){
-//            Scanner in = new Scanner(System.in);
-//            if(int i != "yes"){
-//                break;
-//            }
-//        }
-//        //들어온 번호 삭제
-//        for(){
-//            Array.delete(num); //num == 들어온 번호
-//        }
-//    }
+    static void delOld(File f){
+        StringBuilder s1= new StringBuilder();
+        StringBuilder s2= new StringBuilder();
+        System.out.println("현재 저장된 음식 목록입니다. 삭제를 원하는 음식의 번호를 입력하세요 : ");
+        Scanner in = new Scanner(System.in);
+        printFood(f);
+        int delNum = in.nextInt();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            for(int k=0; k<delNum; k++){
+                s1.append(br.readLine());
+                s1.append("\r\n");
+            }
+
+            String s="";
+            s=br.readLine();
+            while((s=br.readLine()) != null){
+                s2.append(s);
+                s2.append("\r\n");
+            }
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+            bw.append(s1);
+            bw.append(s2);
+
+            System.out.println("삭제되었습니다.");
+            bw.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     //음식 목록 출력 함수
     static void printFood(File f){
         try{
             BufferedReader br = new BufferedReader(new FileReader(f));
-            String str;
-            int k = 1;
-            while((str = br.readLine()) != null){
-                //이러면 목록에 아무것도 없을 때 번호 1만 출력됨...
-                System.out.println(k + " " + str);
-                k++;
+            String str="";
+            if((str=br.readLine()) == null) {
+                System.out.println("등록된 음식이 없습니다.");
+//                System.out.println("등록된 음식이 없습니다. 음식을 등록하려면 1을, 아니라면 1을 제외한 아무숫자를 입력하세요. : ");
+//                Scanner in = new Scanner(System.in);
+//                int ans = in.nextInt();
+//                if (ans == 1) inputNew(f);
+
             }
-            if(str == null) {
-                System.out.println("등록된 음식이 없습니다. 음식을 등록하시겠습니까?");
-                Scanner in = new Scanner(System.in);
-                int ans = in.nextInt();
-                if(ans==1){
-                    inputNew(f);
+            else {
+                int k = 1;
+                while(br.readLine() != null){
+                    //3번째 줄부터 출력됨.
+                    System.out.println(k + " " + br.readLine());
+                    k++;
                 }
-                else Menu.menu(f);
             }
 
             br.close();
-        } catch(FileNotFoundException e){
-            e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        System.out.println("메뉴로 돌아갑니다.");
     }
 
     //새로운 음식 입력
@@ -76,6 +90,5 @@ public class Tools {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("메뉴로 돌아갑니다.");
     }
 }
