@@ -17,7 +17,8 @@ public class Menu{//사용자가 만나는 인터페이스(진짜 메뉴판)
             } else if (num == 2) {
                 Tools.inputNew(f);  //새로운 음식 추가 함수 호출
             } else if (num == 3) {
-                //            tools.delOld(f);  //기존에 있던 음식 삭제하는 함수 호출
+                Tools.delOld(f);  //기존에 있던 음식 삭제하는 함수 호출
+                System.out.println("메뉴로 돌아갑니다.");
             } else if (num == 4){
                 System.out.println("프로그램을 종료합니다.");
                 break;
