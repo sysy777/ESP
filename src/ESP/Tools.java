@@ -33,8 +33,6 @@ public class Tools {
             System.out.println("삭제되었습니다.");
             bw.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,25 +41,18 @@ public class Tools {
     //음식 목록 출력 함수
     static void printFood(File f){
         try{
+            String s = "";
             BufferedReader br = new BufferedReader(new FileReader(f));
-            String str="";
-            if((str=br.readLine()) == null) {
-                System.out.println("등록된 음식이 없습니다.");
-//                System.out.println("등록된 음식이 없습니다. 음식을 등록하려면 1을, 아니라면 1을 제외한 아무숫자를 입력하세요. : ");
-//                Scanner in = new Scanner(System.in);
-//                int ans = in.nextInt();
-//                if (ans == 1) inputNew(f);
-
-            }
-            else {
-                int k = 1;
-                while(br.readLine() != null){
-                    //3번째 줄부터 출력됨.
-                    System.out.println(k + " " + br.readLine());
-                    k++;
+            int k = 1;
+            while(true){
+                s=br.readLine();
+                if(s == null){
+                    System.out.println("더이상 등록된 음식이 없습니다.");
+                    break;
                 }
+                System.out.println(k + " " + s);
+                k++;
             }
-
             br.close();
         } catch (IOException e){
             e.printStackTrace();
@@ -70,23 +61,25 @@ public class Tools {
 
     //새로운 음식 입력
     static void inputNew(File f){
-        //스캐너로 받아오기
         Scanner in = new Scanner(System.in);
 
         System.out.print("저장하실 음식의 개수를 입력하세요 : ");
         int n = in.nextInt();
         try {
-            FileWriter fw = new FileWriter(f, true);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
             for(int i=0; i<n; i++) {
                 System.out.print("음식명을 입력하세요 : ");
                 String a = in.next();
                 System.out.print("유통기한을 입력하세요(YYMMDD) : ");
                 int b = in.nextInt();
-                FoodBlock fb = new FoodBlock(a,b);
-                fw.write(a + " " + b + "\r\n");
+                while(b < 100000 || b >= 1000000){
+                    System.out.print("잘못된 숫자입니다. 다시 입력하세요 : ");
+                    b = in.nextInt();
+                }
+                bw.write(a + " " + b + "\r\n");
             }
+            bw.close();
             System.out.println("저장되었습니다.");
-            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
