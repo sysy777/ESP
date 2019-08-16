@@ -1,36 +1,52 @@
 package ESP;
 
 import ESP.DataStructure.FoodBlock;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class Tools {
-    static void delOld(File f){
-        StringBuilder s1= new StringBuilder();
-        StringBuilder s2= new StringBuilder();
-        System.out.println("현재 저장된 음식 목록입니다. 삭제를 원하는 음식의 번호를 입력하세요 : ");
+    static void delOld(File f) {
+        System.out.println("현재 저장된 음식 목록입니다. ");
         Scanner in = new Scanner(System.in);
         printFood(f);
-        int delNum = in.nextInt();
+        int delNum=0;
+        try {
+            BufferedReader br2 = new BufferedReader(new FileReader(f));
+            if(br2.readLine()==null) {
+                return;
+            } else{
+                System.out.println("삭제를 원하는 음식의 번호를 입력하세요 : ");
+                delNum = in.nextInt();
+            }
+            br2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
-            for(int k=0; k<delNum; k++){
-                s1.append(br.readLine());
-                s1.append("\r\n");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+
+            String s = "";
+            for(int k=0; k<delNum-1; k++){
+                s=br.readLine();
+                if(s != null) {
+                    bw.write(s);
+                    bw.newLine();
+                }
             }
 
-            String s="";
             s=br.readLine();
             while((s=br.readLine()) != null){
-                s2.append(s);
-                s2.append("\r\n");
+                bw.write(s);
+                bw.newLine();
             }
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-            bw.append(s1);
-            bw.append(s2);
+            br.close();
 
             System.out.println("삭제되었습니다.");
+            bw.flush();
             bw.close();
 
         } catch (IOException e) {
@@ -47,11 +63,13 @@ public class Tools {
             while(true){
                 s=br.readLine();
                 if(s == null){
-                    System.out.println("더이상 등록된 음식이 없습니다.");
+                    System.out.print("더이상 등록된 음식이 없습니다. ");
                     break;
                 }
-                System.out.println(k + " " + s);
-                k++;
+                else {
+                    System.out.println(k + " " + s);
+                    k++;
+                }
             }
             br.close();
         } catch (IOException e){
@@ -78,6 +96,7 @@ public class Tools {
                 }
                 bw.write(a + " " + b + "\r\n");
             }
+            bw.flush();
             bw.close();
             System.out.println("저장되었습니다.");
         } catch (IOException e) {
