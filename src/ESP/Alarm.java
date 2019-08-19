@@ -28,7 +28,7 @@ public class Alarm {
                     }
                     int total = gapofDate[0] + gapofDate[1]*30 + gapofDate[2]*365;
 
-                    System.out.println(tuple[0]+"의 유통기한이 "+total+"일 만큼 지났습니다.");
+                    System.out.println(tuple[0]+"의 유통기한이 약"+total+"일 만큼 지났습니다.");
                 }
             }
         }
