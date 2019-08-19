@@ -1,5 +1,6 @@
 import java.io.*;
 
+import ESP.Alarm;
 import ESP.Menu;
 
 public class Main {
@@ -13,6 +14,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        Alarm.alarm(f);
         Menu.menu(f);
     }
 }

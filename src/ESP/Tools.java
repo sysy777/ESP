@@ -66,6 +66,7 @@ public class Tools {
         }
     }
 
+    //음식 목록 출력 함수
     static void printFood(File f){
         try{
             String s = "";
@@ -88,6 +89,7 @@ public class Tools {
         }
     }
 
+    //새로운 음식 입력
     static void inputNew(File f){
         Scanner in = new Scanner(System.in);
 
