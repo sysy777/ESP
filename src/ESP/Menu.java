@@ -3,9 +3,8 @@ package ESP;
 import java.io.*;
 import java.util.Scanner;
 
-public class Menu{//사용자가 만나는 인터페이스(진짜 메뉴판)
+public class Menu{
     public static void menu(File f){
-        //사용자가 할 수 있는 행동 제시 //첫화면
         while(true) {
             System.out.println("======================================================================");
             System.out.println("선택보기 중 하나를 선택해주세요. ");
@@ -28,11 +27,8 @@ public class Menu{//사용자가 만나는 인터페이스(진짜 메뉴판)
                 break;
             } else {
                 System.out.println("잘못된 숫자입니다. 1~4까지의 숫자를 다시 입력해주세요.");
-                // 1,2,3번 중 해당하는 숫자가 없을 시에 1번 항목으로 출력
             }
-            //System.out.println("not done");
         }
-        //System.out.println("done");
     }
 
 
