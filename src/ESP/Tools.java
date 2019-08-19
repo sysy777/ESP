@@ -4,6 +4,7 @@ import ESP.DataStructure.FoodBlock;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 public class Tools {
@@ -11,43 +12,58 @@ public class Tools {
         System.out.println("현재 저장된 음식 목록입니다. ");
         Scanner in = new Scanner(System.in);
         printFood(f);
+        File temp = new File("temp.txt");
         int delNum=0;
         try {
-            BufferedReader br2 = new BufferedReader(new FileReader(f));
-            if(br2.readLine()==null) {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            if(br.readLine()==null) {
                 return;
             } else{
                 System.out.println("삭제를 원하는 음식의 번호를 입력하세요 : ");
                 delNum = in.nextInt();
             }
-            br2.close();
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(f));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 
-            String s = "";
+        try {
+            BufferedReader br2 = new BufferedReader(new FileReader(f));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
+
+            String s = null;
+
+            while((s=br2.readLine()) != null){
+                bw.write(s);
+                bw.flush();
+                bw.newLine();
+            }
+            br2.close();
+            bw.close();
+
+            BufferedReader br3 = new BufferedReader(new FileReader("temp.txt"));
+            BufferedWriter bw2 = new BufferedWriter(new FileWriter(f));
+
             for(int k=0; k<delNum-1; k++){
-                s=br.readLine();
+                s=br3.readLine();
                 if(s != null) {
-                    bw.write(s);
-                    bw.newLine();
+                    bw2.write(s);
+                    bw2.flush();
+                    bw2.newLine();
                 }
             }
 
-            s=br.readLine();
-            while((s=br.readLine()) != null){
-                bw.write(s);
-                bw.newLine();
+            s=br3.readLine();
+            while((s=br3.readLine()) != null){
+                bw2.write(s);
+                bw2.flush();
+                bw2.newLine();
             }
 
-            br.close();
+            br3.close();
 
             System.out.println("삭제되었습니다.");
-            bw.flush();
-            bw.close();
+            bw2.close();
 
         } catch (IOException e) {
             e.printStackTrace();
