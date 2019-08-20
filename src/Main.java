@@ -1,6 +1,7 @@
 import java.io.*;
 
 import ESP.Alarm;
+import ESP.CarbonTools;
 import ESP.Menu;
 
 public class Main {
@@ -15,6 +16,7 @@ public class Main {
         }
 
         Alarm.alarm(f);
+        CarbonTools.takeExpired(f);
         Menu.menu(f);
     }
 }
