@@ -8,7 +8,7 @@ public class Tools {
         System.out.println("현재 저장된 음식 목록입니다. ");
         Scanner in = new Scanner(System.in);
         printFood(f);
-        File temp = new File("temp.txt");
+        //File temp = new File("temp.txt");
         int delNum=0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -23,7 +23,7 @@ public class Tools {
             e.printStackTrace();
         }
 
-        try {
+        try { //temp 에 완전 복사.
             BufferedReader br2 = new BufferedReader(new FileReader(f));
             BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
 
@@ -37,6 +37,7 @@ public class Tools {
             br2.close();
             bw.close();
 
+    //temp에서 선택 후 덮어 쓰기.
             BufferedReader br3 = new BufferedReader(new FileReader("temp.txt"));
             BufferedWriter bw2 = new BufferedWriter(new FileWriter(f));
 
