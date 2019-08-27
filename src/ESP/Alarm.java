@@ -17,8 +17,11 @@ public class Alarm {
                 tuple = line.split(" ");
                 int today = Integer.parseInt(strToday);
                 int fooday= Integer.parseInt(tuple[1]);
-                if(today == fooday){
-                    System.out.println(tuple[0]+"의 유통기한이 "+strToday+"까지 입니다.");
+                if(fooday - today == 0){
+                    System.out.println(tuple[0]+"의 유통기한이 "+strToday+"까지 입니다. 오늘까지 드셔야 합니다.");
+                }
+                else if(0 < fooday-today && fooday-today <= 2){
+                    System.out.println(tuple[0]+"의 유통기한이 "+strToday+"까지 입니다. "+(fooday-today)+"일 남았습니다.");
                 }
                 else if((today-fooday)>0) {
                     int gapofDate[] = new int[3];
